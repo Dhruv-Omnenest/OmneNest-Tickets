@@ -1,3 +1,4 @@
+import AdvancedComponent from "./components/AdvancedComponent"
 import AreaChart from "./components/AreaChart"
 import CandleChart from "./components/Candle"
 import LineChart from "./components/LineChart"
@@ -9,6 +10,7 @@ function App() {
       <AreaChart/>
       <CandleChart/>
       <LineChart/>
+      <AdvancedComponent/>
     </div>
   )
 }
