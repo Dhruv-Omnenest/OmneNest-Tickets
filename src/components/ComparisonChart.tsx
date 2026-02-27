@@ -15,15 +15,6 @@ const ComparisonChart: React.FC<Props> = ({ symbols }) => {
         const chart = createChart(containerRef.current, {
             height: 400,
         });
-
-        const normalize = (data: any[]) => {
-            const first = data[0].value;
-            return data.map((item) => ({
-                time: item.time,
-                value: (item.value / first - 1) * 100,
-            }));
-        };
-
         const fetchData = async (symbol: string) => {
             const res = await fetch(
                 `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=1d&limit=100`
@@ -43,9 +34,8 @@ const ComparisonChart: React.FC<Props> = ({ symbols }) => {
             });
 
             const rawData = await fetchData(symbol);
-            const normalizedData = normalize(rawData);
 
-            series.setData(normalizedData);
+            series.setData(rawData);
         });
 
         chart.timeScale().fitContent();
